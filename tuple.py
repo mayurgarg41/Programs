@@ -350,25 +350,288 @@ No. of alphabets: 5
 No. of digits : 1
 '''
 
+'''
 astring = input('Input the string:')
-alist = list(astring)
-#for val in alist:
+digit = 0
+alpha = 0
+for item in list(astring):
+    if item.isalpha():
+        alpha +=1
+    elif item.isdigit():
+        digit +=1
+
+print('alpha', alpha, 'digit', digit)
+'''
+
+# Write program to accept string and calculate teh number of upper case letters and lower case letters.
+
+'''
+astring = input('Input the string:')
+upper = 0
+lower = 0
+for item in list(astring):
+    if item.isupper():
+        upper +=1
+    elif item.islower():
+        lower +=1   
+print(upper, lower)
+'''
+
+#Write program to accept month from keyboard and display the season
+''' Jan to Mar -> Winter
+Apr to Jun -> Summer
+July to Oct -> rainy'''
+
+'''
+month = input('Enter the first 3 char of month:' )
+Mon = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+g=0
+i=99
+for item in Mon:
+    if item == month:
+        i=g
+    g+=1
+
+print(i)
+if i>=0 and i<4:
+    print('Winter')
+elif i>=4 and i<7:
+    print('Summer')
+elif i>=7 and i<11:
+    print('Rainy')
+else: print('Invalid Month')
+ '''
+ #alternate method
+ 
+'''
+month = input('Enter the first 3 char of month:' )
+if month in ['Jan','Feb','Mar']:
+    print('Winter')
+if month in ['Apr','May','Jun']:
+    print('Summer')
+'''
+        
+
+#Write program to check validity of password input by user
+'''
+Criteria-
+1. Atleast 1 character from [$#@]
+2. Min length :6
+3. Max length :12
+display valid password if all condiions are met else invalid password
+'''
+
+'''
+passwd = input('Enter password:')
+Valid = 0
+if len(passwd)<6 or len(passwd)>12:
+    print('Invalid password')
+else:
+    for i in passwd:
+        if i in ['@','#','$']:
+            Valid =1
+
+if Valid == 1:
+    print('Valid password')
+else:
+    print('Invalid password')    
+'''
+
+#alternate method
+
+'''
+passwd = input('Enter password:')
+Valid = 0
+if len(passwd)>=6 and len(passwd)<=12 and ('#' in passwd or '$' in passwd or '#' in passwd):
+    valid =1
     
+if valid == 1:
+    print('Valid password')
+else:
+    print('Invalid password') 
+'''
 
 
+#Library functions
+
+'''
+import math
+print(math.acos(0.3))
+
+import math as m
+print (m.tan(2))
+'''
+
+#write program to list all files and directories in current path
+'''
+import os
+print(os.listdir('C:/'))
+
+for val in os.listdir('C:/'):
+    if os.path.isfile('C:/'+ val):
+        print(val)
+
+'''
+#Write a program to print and delete all files ending in .pyt from current directory
+'''
+import os
+for file in os.listdir():
+    if file.endswith('.py'):
+        print(file)
+
+'''
+
+#executing system commands in python
+#alternate way is os.system
+'''
+import subprocess
+print(subprocess.getoutput('dir'))
+'''
+
+#write program to create 100 directories in below format. dir1, dir2
+
+'''
+import os
+path = os.getcwd()
+print(path)
+for val in range(1,10):
+    dirname = path + '\dir' + str(val)
+    print(dirname)
+    os.mkdir(dirname)
+#print(os.path.join(path,'A')
+'''
+
+#write program to display all files and directories in below format
+""" Files
+-----
+file 1
+file 2
+
+Directories
+----------   
+dir 1
+dir 2 
+"""
+'''
+import os
+
+files = []
+dirs = []
+
+for file in os.listdir():
+    if os.path.isfile(file):
+        files.append(file)
+    elif os.path.isdir(file):
+        dirs.append(file)
+
+print('files')
+print('-------------')
+for file in files:
+    print (file)
+
+print('dirs')
+print('-------------')
+for file in dirs:
+    print (file)
+'''
+
+#write a program to create a folder 'backup' and copy all files from current path into it
+'''
+import os
+import shutil
+
+path1 = os.path.join(os.getcwd(),'backup')
+print(path1)
+#os.mkdir(path1)
+
+for val in os.listdir():
+    if os.path.isfile(val):
+#        print(os.path.join(os.getcwd(), val))
+        shutil.copy(os.path.join(os.getcwd(), val), path1)
+#        print(val)
+        
+'''
+#command to create a new file in current directory
+'''
+import pathlib
+pathlib.Path('newfile.txt').touch()
+
+'''
+#write a program to create a file with todays timestamp
+'''
+Eg: 29_jan_2019.log
+29012019155323.log
+'''
+'''
+import os
+import datetime
+import pathlib
+
+path = (os.path.join(os.getcwd(),str(datetime.datetime.now().strftime('%d_%m_%Y''.log'))))
+
+pathlib.Path(path).touch()
+'''
+'''
+import time
+filename = time.strftime('%d_%b_%Y.log')
+print(filename)
+pathlib.Path(filename).touch()
+'''
+
+#definition
+'''
+def display():
+    print('inside function')
+    
+    
+print ('program starts')
+display()
+print ('program end')
+'''
+#fixed arguments
+'''
+def display(first, second):
+    print('inside function', first, second)
+    
+    
+print ('program starts')
+display(10,20)
+print ('program end')
+'''
+
+#default arguments
+'''
+def display(first=0, second=0):
+    final = first + second
+    print(final)
+    
+    
+print ('program starts')
+display(10,20)
+display (10)
+print ('program end')
+'''
 
 
+#keyord argument
 
+'''
+def display(first, second):
+    print(second)
+    print(first)
+    
+    
+print ('program starts')
+display(second = 10, first = 20)
+print ('program end')
+'''
 
-
-
-
-
-
-
-
-
-
-
+#variable length argument - any variable prefixed with * becomes tuple
+'''
+def display(*data):
+    print (data)
+    
+display(1,2,3,4,5,6)
+'''
 
 
